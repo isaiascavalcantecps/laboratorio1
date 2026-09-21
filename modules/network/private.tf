@@ -4,8 +4,8 @@ resource "aws_subnet" "eks_subnet_private_1a" {
   availability_zone       = "${data.aws_region.current.region}a"
   map_public_ip_on_launch = false
 
-  tags = merge(local.tags,
-    { Name = "${var.project_name}subnet-priv-1b"
+  tags = merge(var.tags,
+    { Name = "${var.project_name}subnet-priv-1a"
     "kubernetes.io/role/internal-elb" = "1" }
   )
 }
@@ -16,8 +16,18 @@ resource "aws_subnet" "eks_subnet_private_1b" {
   availability_zone       = "${data.aws_region.current.region}b"
   map_public_ip_on_launch = false
 
-  tags = merge(local.tags,
+  tags = merge(var.tags,
     { Name = "${var.project_name}subnet-priv-1b"
     "kubernetes.io/role/internal-elb" = "1" }
   )
+}
+
+resource "aws_route_table_association" "rtb_priv_1a" {
+  subnet_id      = aws_subnet.eks_subnet_private_1a.id
+  route_table_id = aws_route_table.eks_priv_rtb_1a.id
+}
+
+resource "aws_route_table_association" "rtb_priv_1b" {
+  subnet_id      = aws_subnet.eks_subnet_private_1b.id
+  route_table_id = aws_route_table.eks_priv_rtb_1b.id
 }

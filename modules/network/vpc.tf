@@ -4,7 +4,7 @@ resource "aws_vpc" "eks_lab01_vpc" {
   enable_dns_hostnames = true
   enable_dns_support   = true
 
-  tags = {
-    Name = "${var.project_name}-vpc"
-  }
+  tags = merge(var.tags,
+    { Name = "${var.project_name}-vpc" }
+  )
 }
