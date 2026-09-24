@@ -6,3 +6,17 @@ repos:
       args:
       - --args=-recursive
     - id: terraform_validate
+
+  # Validação de sintaxe e quebra de linha geral
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  # Linter para GitHub Actions
+-   repo: https://github.com/rhysd/actionlint
+    rev: v1.7.3
+    hooks:
+      - id: actionlint
