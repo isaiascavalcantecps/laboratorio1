@@ -1,16 +1,12 @@
-name: "CI/CD - Implantação Cluster" # Nome da esteira
+name: "CI/CD - Implantação Cluster"
 
-on: # on: define quais eventos disparam a esteira. Ele funciona como um detector de acontecimentos no GitHub.
-# Você está dizendo ao GitHub: "Execute esta esteira se acontecer o Evento 1 OU o Evento 2".
-  push: # Se for feito um push com as branchs citadas, ele roda a esteira
+on:
+  push:
     branches: [ "dev", "homolog", "main" ]
-  pull_request: #Se no site do github for feito um pull request, ele roda a esteira
+  pull_request:
     branches: [ "homolog", "main" ]
 
 jobs:
-  # -----------------------------------------------------------
-  # ETAPA 1: Executa exatamente o seu .pre-commit-config.yaml
-  # -----------------------------------------------------------
   validacao-pre-commit:
     name: "Validar Pre-Commit"
     runs-on: ubuntu-latest
