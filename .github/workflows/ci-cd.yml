@@ -32,7 +32,7 @@ jobs:
     name: "Terraform Apply"
     needs: validacao-pre-commit
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/homolog' || github.ref == 'refs/heads/main')
 
     steps:
       - name: Baixar código do repositório
