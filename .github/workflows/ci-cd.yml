@@ -54,6 +54,7 @@ jobs:
         run: terraform init
 
       - name: Aplicar Infraestrutura
+        env:
+          TFVARS_cidr_block: ${{ secrets.TFVARS_CIDR_BLOCK }}
+          TFVARS_project_name: ${{ secrets.TFVARS_PROJECT_NAME}}
         run: terraform apply -auto-approve -input=false
-    
-
